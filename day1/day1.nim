@@ -1,14 +1,8 @@
 import strutils, sequtils, algorithm, tables
 
-let lines = readFile("day1/input.txt").splitLines()
-
-var L: seq[int] = @[]
-var R: seq[int] = @[]
-
-for line in lines:
-    let lr = line.splitWhitespace()
-    let (l, r) = (lr[0].parseInt(), lr[1].parseInt())
-    L &= l; R &= r
+var (L,R) = readFile("day1/input.txt").splitLines()
+    .mapIt((let n = it.splitWhitespace(); (n[0].parseInt(), n[1].parseInt())))
+    .unzip()
 
 L.sort(); R.sort()
 
